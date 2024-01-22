@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="dbup-core" Version="5.0.37"/>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" NoWarn="NU1903"/>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
