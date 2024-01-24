@@ -6,7 +6,7 @@
     <Company>DbUp Contributors</Company>
     <Product>DbUp</Product>
     <Copyright>Copyright © DbUp Contributors 2015</Copyright>
-    <TargetFrameworks>netstandard1.3;netstandard2.0;net35;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;net462</TargetFrameworks>
     <AssemblyName>dbup-mysql</AssemblyName>
     <RootNamespace>DbUp.MySql</RootNamespace>
     <PackageId>dbup-mysql</PackageId>
@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="dbup-core" Version="5.0.37"/>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5"/>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" NoWarn="NU1903"/>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
