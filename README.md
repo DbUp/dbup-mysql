@@ -1,4 +1,4 @@
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/DbUp/dbup-mysql/CI/main)](https://github.com/DbUp/dbup-mysql/actions/workflows/main.yml?query=branch%3Amain)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/DbUp/dbup-mysql/main.yml?branch=main)](https://github.com/DbUp/dbup-mysql/actions/workflows/main.yml?query=branch%3Amain)
 [![NuGet](https://img.shields.io/nuget/dt/dbup-mysql.svg)](https://www.nuget.org/packages/dbup-mysql)
 [![NuGet](https://img.shields.io/nuget/v/dbup-mysql.svg)](https://www.nuget.org/packages/dbup-mysql)
 [![Prerelease](https://img.shields.io/nuget/vpre/dbup-mysql?color=orange&label=prerelease)](https://www.nuget.org/packages/dbup-mysql)
