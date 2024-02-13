@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using DbUp.Engine.Transactions;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
+
 
 namespace DbUp.MySql
 {
