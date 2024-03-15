@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="dbup-core" Version="5.0.37"/>
+    <PackageReference Include="dbup-core" Version="5.0.87"/>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
