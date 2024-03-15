@@ -6,7 +6,7 @@
     <Company>DbUp Contributors</Company>
     <Product>DbUp</Product>
     <Copyright>Copyright © DbUp Contributors 2015</Copyright>
-    <TargetFrameworks>netstandard1.3;netstandard2.0;net462</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>dbup-mysql</AssemblyName>
     <RootNamespace>DbUp.MySql</RootNamespace>
     <PackageId>dbup-mysql</PackageId>
@@ -16,27 +16,10 @@
     <PackageIcon>dbup-icon.png</PackageIcon>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net462'">
-    <DefineConstants>$(DefineConstants);MY_SQL_DATA_6_9_5</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="dbup-core" Version="5.0.87"/>
+    <PackageReference Include="dbup-core" Version="6.0.0-beta.108"/>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-    <Reference Include="System"/>
-    <PackageReference Include="MySql.Data" Version="6.9.5"/>
-    <!-- last version to support < .NET 4.5.2. -->
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-    <PackageReference Include="MySql.Data" Version="6.10.9"/>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="MySql.Data" Version="8.0.33"/>
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
   </ItemGroup>
 
   <ItemGroup>
