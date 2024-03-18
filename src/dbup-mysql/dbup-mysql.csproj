@@ -14,7 +14,6 @@
     <SignAssembly>true</SignAssembly>
     <RepositoryUrl>https://github.com/DbUp/dbup-mysql.git</RepositoryUrl>
     <PackageIcon>dbup-icon.png</PackageIcon>
-    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(CI)' == 'true'">
