@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using DbUp.MySql;
 using Shouldly;
 using Xunit;
 
-namespace DbUp.Tests.Support.MySql
+namespace DbUp.MySql.Tests
 {
     public class MySqlConnectionManagerTests
     {
@@ -44,7 +42,7 @@ namespace DbUp.Tests.Support.MySql
             multiCommand += Environment.NewLine;
             multiCommand += "CREATE TABLE 'ZIP'$$";
             multiCommand += Environment.NewLine;
-            multiCommand += "CREATE TABLE IF NOT EXISTS 'BAR';";
+            multiCommand += "CREATE TABLE IF NOT EXISTS 'DELIMITER';";
 
             var connectionManager = new MySqlConnectionManager("connectionstring");
             var result = connectionManager.SplitScriptIntoCommands(multiCommand);
@@ -52,9 +50,13 @@ namespace DbUp.Tests.Support.MySql
             var enumerable = result as string[] ?? result.ToArray();
             enumerable.Length.ShouldBe(4);
             enumerable[0].IndexOf("DELIMITER", StringComparison.Ordinal).ShouldBe(-1);
+            enumerable[0].ShouldBe("USE `test`");
             enumerable[1].IndexOf("DELIMITER", StringComparison.Ordinal).ShouldBe(-1);
+            enumerable[1].ShouldBe("CREATE TABLE IF NOT EXISTS 'FOO'");
             enumerable[2].IndexOf("DELIMITER", StringComparison.Ordinal).ShouldBe(-1);
-            enumerable[3].IndexOf("DELIMITER", StringComparison.Ordinal).ShouldBe(-1);
+            enumerable[2].ShouldBe("CREATE TABLE 'ZIP'");
+            enumerable[3].IndexOf("DELIMITER", StringComparison.Ordinal).ShouldBe(28);
+            enumerable[3].ShouldBe("CREATE TABLE IF NOT EXISTS 'DELIMITER';");
         }
 
         [Fact]
