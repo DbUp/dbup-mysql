@@ -12,16 +12,12 @@ jobs:
     env:
       DOTNET_NOLOGO: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Avoid pre-populating the NuGet package cache
+      ASSENTNONINTERACTIVE: true
 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # all
-
-      - name: Setup .NET 2.0 # Remove in v5.0
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 2.0.x
 
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v1
