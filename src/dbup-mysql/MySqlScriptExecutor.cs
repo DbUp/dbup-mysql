@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using DbUp.Engine;
 using DbUp.Engine.Output;
@@ -41,7 +41,7 @@ namespace DbUp.MySql
             }
             catch (MySqlException exception)
             {
-                var code = exception.Code;
+                var code = exception.ErrorCode;
                 Log().LogInformation("MySql exception has occurred in script: '{0}'", script.Name);
                 Log().LogError("Script block number: {0}; MySql error code: {1}; Number {2}; Message: {3}", index, code, exception.Number, exception.Message);
                 Log().LogError(exception.ToString());
