@@ -10,4 +10,4 @@ jobs:
     name: Build
     uses: DbUp/Universe/.github/workflows/build.yml@main
     secrets:
-      GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
