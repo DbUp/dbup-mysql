@@ -10,4 +10,4 @@ on:
 jobs:
   report:
     name: Test Report 🧪
-    uses: DbUp/Universe/ReusableWorkflows/test-report.yml
+    uses: DbUp/Universe/ReusableWorkflows/test-report.yml@main

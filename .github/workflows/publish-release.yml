@@ -8,4 +8,4 @@ on:
 jobs:
   publish:
     name: Publish Package
-    uses: DbUp/Universe/ReusableWorkflows/publish-release.yml
+    uses: DbUp/Universe/ReusableWorkflows/publish-release.yml@main

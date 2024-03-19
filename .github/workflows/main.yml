@@ -8,5 +8,5 @@ on:
 jobs:
   build:
     name: Build
-    uses: DbUp/Universe/ReusableWorkflows/build.yml
+    uses: DbUp/Universe/ReusableWorkflows/build.yml@main
 
