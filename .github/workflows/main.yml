@@ -8,5 +8,5 @@ on:
 jobs:
   build:
     name: Build
-    uses: DbUp/Universe/.github/workflows/ReusableWorkflows/build.yml@main
+    uses: DbUp/Universe/.github/workflows/build.yml@main
     secrets: inherit

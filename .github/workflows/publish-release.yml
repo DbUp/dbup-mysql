@@ -8,4 +8,4 @@ on:
 jobs:
   publish:
     name: Publish Package
-    uses: DbUp/Universe/.github/workflows/ReusableWorkflows/publish-release.yml@main
+    uses: DbUp/Universe/.github/workflows/publish-release.yml@main
