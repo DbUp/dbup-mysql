@@ -3,11 +3,11 @@ run-name: Generate Test Report for workflow ${{ github.event.workflow_run.name }
 
 on:
   workflow_run:
-    workflows: [ "CI" ]
-    types:
-      - completed
+    workflows: ["CI", "build"]
+    types: [completed]
 
 jobs:
   report:
     name: Test Report 🧪
     uses: DbUp/Universe/.github/workflows/test-report.yml@reusable
+    secrets: inherit
