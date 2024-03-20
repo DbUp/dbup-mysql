@@ -10,4 +10,4 @@ on:
 jobs:
   build:
     name: Build
-    uses: DbUp/Universe/.github/workflows/build.yml@reusable
+    uses: DbUp/Universe/.github/workflows/build.yml@main

@@ -8,5 +8,5 @@ on:
 jobs:
   publish:
     name: Publish Package
-    uses: DbUp/Universe/.github/workflows/publish-release.yml@reusable
+    uses: DbUp/Universe/.github/workflows/publish-release.yml@main
     secrets: inherit

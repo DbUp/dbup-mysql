@@ -9,4 +9,4 @@ on:
 jobs:
   report:
     name: Test Report 🧪
-    uses: DbUp/Universe/.github/workflows/test-report.yml@reusable
+    uses: DbUp/Universe/.github/workflows/test-report.yml@main
