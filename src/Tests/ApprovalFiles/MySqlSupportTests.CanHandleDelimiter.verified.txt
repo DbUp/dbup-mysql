@@ -1,30 +1,22 @@
-DB Operation: Open connection
+﻿DB Operation: Open connection
 Info:         Beginning database upgrade
-Info:         Checking whether journal table exists
+Info:         Checking whether journal table exists..
 DB Operation: Execute scalar command: select 1 from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'schemaversions'
 DB Operation: Dispose command
-Info:         Journal table does not exist
+Info:         Fetching list of already executed scripts.
+DB Operation: Execute reader command: select scriptname from `schemaversions` order by scriptname
+DB Operation: Dispose command
 Info:         Executing Database Server script 'Script0003'
-Info:         Checking whether journal table exists
+Info:         Checking whether journal table exists..
 DB Operation: Execute scalar command: select 1 from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'schemaversions'
 DB Operation: Dispose command
-Info:         Creating the `schemaversions` table
-DB Operation: Execute non query command: CREATE TABLE `schemaversions` 
-(
-    `schemaversionid` INT NOT NULL AUTO_INCREMENT,
-    `scriptname` VARCHAR(255) NOT NULL,
-    `applied` TIMESTAMP NOT NULL,
-    PRIMARY KEY (`schemaversionid`)
-);
+DB Operation: Execute non query command: USE `test`
 DB Operation: Dispose command
-Info:         The `schemaversions` table has been created
-DB Operation: Execute non query command: USE `test`;
-DROP procedure IF EXISTS `testSproc`;
-
-DELIMITER $$
-
-USE `test`$$
-CREATE PROCEDURE `testSproc`(
+DB Operation: Execute non query command: DROP procedure IF EXISTS `testSproc`
+DB Operation: Dispose command
+DB Operation: Execute non query command: USE `test`
+DB Operation: Dispose command
+DB Operation: Execute non query command: CREATE PROCEDURE `testSproc`(
         IN   ssn                    VARCHAR(32)
      )
 BEGIN
@@ -33,7 +25,7 @@ BEGIN
     FROM   customer as c
     WHERE  c.ssn = ssn ;
 
-END$$
+END
 DB Operation: Dispose command
 DB Operation: Create parameter
 Info:         DB Operation: Add parameter to command: scriptName=Script0003

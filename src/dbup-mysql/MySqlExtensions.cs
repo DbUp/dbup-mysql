@@ -164,7 +164,7 @@ public static class MySqlExtensions
         }
         catch (Exception e)
         {
-            logger.LogInformation(@"Database not found on server with connection string in settings: {0}", e.Message);
+            logger.WriteInformation(@"Database not found on server with connection string in settings: {0}", e.Message);
         }
 
         using (var connection = new MySqlConnection(masterConnectionString))
@@ -195,7 +195,7 @@ public static class MySqlExtensions
                 command.ExecuteNonQuery();
             }
 
-            logger.LogInformation(@"Created database {0}", databaseName);
+            logger.WriteInformation(@"Created database {0}", databaseName);
         }
     }
 

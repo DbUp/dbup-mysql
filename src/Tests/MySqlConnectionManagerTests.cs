@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using DbUp.MySql;
 using Shouldly;
 using Xunit;
 
-namespace DbUp.MySql.Tests
+namespace DbUp.Tests.Support.MySql
 {
     public class MySqlConnectionManagerTests
     {

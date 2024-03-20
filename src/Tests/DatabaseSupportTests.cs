@@ -1,7 +1,9 @@
-﻿using DbUp.Builder;
+﻿#if !NETCORE
+using DbUp.Builder;
+using DbUp.MySql;
 using DbUp.Tests.Common;
 
-namespace DbUp.MySql.Tests;
+namespace DbUp.Tests.Providers.MySql;
 
 public class DatabaseSupportTests : DatabaseSupportTestsBase
 {
@@ -18,3 +20,4 @@ public class DatabaseSupportTests : DatabaseSupportTestsBase
                 => new MySqlTableJournal(connectionManagerFactory, logFactory, schema, tableName)
         );
 }
+#endif

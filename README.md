@@ -13,4 +13,4 @@ Please only log issue related to MySql support in this repo. For cross cutting i
 
 # Contributing
 
-See the [readme in our main repo](https://github.com/DbUp/DbUp/blob/main/README.md) for how to get started and contribute.
+See the [readme in our main repo](https://github.com/DbUp/DbUp/blob/master/README.md) for how to get started and contribute.
