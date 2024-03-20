@@ -6,7 +6,7 @@ using DbUp.Builder;
 using DbUp.Engine.Output;
 using DbUp.Engine.Transactions;
 using DbUp.MySql;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 /// <summary>
 /// Configuration extension methods for MySql.
