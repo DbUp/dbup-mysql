@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    tags-ignore: * # Don't build when a tag is created
+    branches:
+      - '**' # Ignores pushes of tags
   pull_request:
   workflow_dispatch:
 
