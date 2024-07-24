@@ -173,7 +173,7 @@ public static class MySqlExtensions
             if (DatabaseExists(connection, databaseName))
                 return;
 
-            var collationString = string.IsNullOrEmpty(collation) ? "" : string.Format(@" COLLATE {0}", collation);
+            var collationString = string.IsNullOrEmpty(collation) ? "" : $@" COLLATE {collation}";
             var sqlCommandText = string.Format
                     (
                         @"create database {0}{1};",
