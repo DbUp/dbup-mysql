@@ -231,7 +231,7 @@ public static class MySqlExtensions
         if (string.IsNullOrEmpty(databaseName) || databaseName.Trim() == string.Empty)
             throw new InvalidOperationException("The connection string does not specify a database name.");
 
-        masterConnectionStringBuilder.Database = "mysql";
+        
         masterConnectionString = masterConnectionStringBuilder.ConnectionString;
     }
 }
