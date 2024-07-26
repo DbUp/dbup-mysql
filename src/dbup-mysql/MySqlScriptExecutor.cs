@@ -4,7 +4,7 @@ using DbUp.Engine;
 using DbUp.Engine.Output;
 using DbUp.Engine.Transactions;
 using DbUp.Support;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace DbUp.MySql
 {
@@ -44,7 +44,7 @@ namespace DbUp.MySql
 #if MY_SQL_DATA_6_9_5
                 var code = exception.ErrorCode;
 #else
-                var code = exception.Code;
+                var code = exception.ErrorCode;
 #endif
                 Log().WriteInformation("MySql exception has occurred in script: '{0}'", script.Name);
                 Log().WriteError("Script block number: {0}; MySql error code: {1}; Number {2}; Message: {3}", index, code, exception.Number, exception.Message);
