@@ -199,6 +199,69 @@ public static class MySqlExtensions
         }
     }
 
+    /// <summary>
+    /// Drop the database specified in the connection string.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">The connection string.</param>
+    public static void MySqlDatabase(
+        this SupportedDatabasesForDropDatabase supported,
+        string connectionString)
+    {
+        MySqlDatabase(supported, connectionString, new ConsoleUpgradeLog());
+    }
+
+    /// <summary>
+    /// Drop the database specified in the connection string.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">The connection string.</param>
+    /// <param name="commandTimeout">Use this to set the command time out for dropping a database in case you're encountering a time out in this operation.</param>
+    public static void MySqlDatabase(
+        this SupportedDatabasesForDropDatabase supported,
+        string connectionString,
+        int commandTimeout)
+    {
+        MySqlDatabase(supported, connectionString, new ConsoleUpgradeLog(), commandTimeout);
+    }
+
+    /// <summary>
+    /// Drop the database specified in the connection string.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">The connection string.</param>
+    /// <param name="logger">The <see cref="DbUp.Engine.Output.IUpgradeLog"/> used to record actions.</param>
+    /// <param name="timeout">Use this to set the command time out for dropping a database in case you're encountering a time out in this operation.</param>
+    public static void MySqlDatabase(
+        this SupportedDatabasesForDropDatabase supported,
+        string connectionString,
+        IUpgradeLog logger,
+        int timeout = -1)
+    {
+        GetMysqlConnectionStringBuilder(connectionString, logger, out var masterConnectionString, out var databaseName);
+        using (var connection = new MySqlConnection(masterConnectionString))
+        {
+            connection.Open();
+            if (!DatabaseExists(connection, databaseName))
+                return;
+            var dropDatabaseCommand = new MySqlCommand($"DROP DATABASE @databaseName;", connection)
+            {
+                CommandType = CommandType.Text
+            };
+            dropDatabaseCommand.Parameters.AddWithValue("@databaseName", databaseName);
+            using (var command = dropDatabaseCommand)
+            {
+                if (timeout >= 0)
+                {
+                    command.CommandTimeout = timeout;
+                }
+
+                command.ExecuteNonQuery();
+            }
+            logger.WriteInformation(@"Dropped database {0}", databaseName);
+        }
+    }
+
     static bool DatabaseExists(MySqlConnection connection, string databaseName)
     {
         var sqlCommandText = string.Format
