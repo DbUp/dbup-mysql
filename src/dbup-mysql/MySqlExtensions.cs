@@ -258,7 +258,7 @@ public static class MySqlExtensions
 
                 command.ExecuteNonQuery();
             }
-            logger.WriteInformation(@"Dropped database {0}", databaseName);
+            logger.LogInformation("Dropped database {0}", databaseName);
         }
     }
 
