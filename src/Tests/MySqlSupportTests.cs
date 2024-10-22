@@ -1,24 +1,21 @@
 ﻿using System.Threading.Tasks;
+using Assent;
 using DbUp.Tests.Common;
 using DbUp.Tests.Common.RecordingDb;
 using Shouldly;
-using VerifyXunit;
 using Xunit;
 
-namespace DbUp.Tests.Support.MySql
+namespace DbUp.MySql.Tests
 {
-    [UsesVerify]
     public class MySqlSupportTests
     {
         [Fact]
-        public Task CanHandleDelimiter()
+        public void CanHandleDelimiter()
         {
             var logger = new CaptureLogsLogger();
-            var recordingDbConnection = new RecordingDbConnection(logger, "schemaversions");
-            recordingDbConnection.SetupRunScripts();
+            var recordingDbConnection = new RecordingDbConnection(logger);
             var upgrader = DeployChanges.To
-                .MySqlDatabase(string.Empty)
-                .OverrideConnectionFactory(recordingDbConnection)
+                .MySqlDatabase(new TestConnectionManager(recordingDbConnection))
                 .LogTo(logger)
                 .WithScript("Script0003", @"USE `test`;
 DROP procedure IF EXISTS `testSproc`;
@@ -40,7 +37,7 @@ END$$").Build();
             var result = upgrader.PerformUpgrade();
 
             result.Successful.ShouldBe(true);
-            return Verifier.Verify(logger.Log, VerifyHelper.GetVerifySettings());
+            this.Assent(logger.Log, new Configuration().UsingSanitiser(Scrubbers.ScrubDates));
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿#if !NETCORE
-using DbUp.Tests.Common;
+﻿using DbUp.Tests.Common;
 
-namespace DbUp.Tests.Providers.MySql;
+namespace DbUp.MySql.Tests;
 
 public class NoPublicApiChanges : NoPublicApiChangesBase
 {
@@ -10,4 +9,3 @@ public class NoPublicApiChanges : NoPublicApiChangesBase
     {
     }
 }
-#endif

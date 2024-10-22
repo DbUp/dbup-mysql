@@ -6,7 +6,7 @@ using DbUp.Builder;
 using DbUp.Engine.Output;
 using DbUp.Engine.Transactions;
 using DbUp.MySql;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 /// <summary>
 /// Configuration extension methods for MySql.
@@ -164,7 +164,7 @@ public static class MySqlExtensions
         }
         catch (Exception e)
         {
-            logger.WriteInformation(@"Database not found on server with connection string in settings: {0}", e.Message);
+            logger.LogInformation(@"Database not found on server with connection string in settings: {0}", e.Message);
         }
 
         using (var connection = new MySqlConnection(masterConnectionString))
@@ -173,7 +173,7 @@ public static class MySqlExtensions
             if (DatabaseExists(connection, databaseName))
                 return;
 
-            var collationString = string.IsNullOrEmpty(collation) ? "" : string.Format(@" COLLATE {0}", collation);
+            var collationString = string.IsNullOrEmpty(collation) ? "" : $@" COLLATE {collation}";
             var sqlCommandText = string.Format
                     (
                         @"create database {0}{1};",
@@ -195,7 +195,70 @@ public static class MySqlExtensions
                 command.ExecuteNonQuery();
             }
 
-            logger.WriteInformation(@"Created database {0}", databaseName);
+            logger.LogInformation(@"Created database {0}", databaseName);
+        }
+    }
+
+    /// <summary>
+    /// Drop the database specified in the connection string.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">The connection string.</param>
+    public static void MySqlDatabase(
+        this SupportedDatabasesForDropDatabase supported,
+        string connectionString)
+    {
+        MySqlDatabase(supported, connectionString, new ConsoleUpgradeLog());
+    }
+
+    /// <summary>
+    /// Drop the database specified in the connection string.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">The connection string.</param>
+    /// <param name="commandTimeout">Use this to set the command time out for dropping a database in case you're encountering a time out in this operation.</param>
+    public static void MySqlDatabase(
+        this SupportedDatabasesForDropDatabase supported,
+        string connectionString,
+        int commandTimeout)
+    {
+        MySqlDatabase(supported, connectionString, new ConsoleUpgradeLog(), commandTimeout);
+    }
+
+    /// <summary>
+    /// Drop the database specified in the connection string.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">The connection string.</param>
+    /// <param name="logger">The <see cref="DbUp.Engine.Output.IUpgradeLog"/> used to record actions.</param>
+    /// <param name="timeout">Use this to set the command time out for dropping a database in case you're encountering a time out in this operation.</param>
+    public static void MySqlDatabase(
+        this SupportedDatabasesForDropDatabase supported,
+        string connectionString,
+        IUpgradeLog logger,
+        int timeout = -1)
+    {
+        GetMysqlConnectionStringBuilder(connectionString, logger, out var masterConnectionString, out var databaseName);
+        using (var connection = new MySqlConnection(masterConnectionString))
+        {
+            connection.Open();
+            if (!DatabaseExists(connection, databaseName))
+                return;
+            var dropDatabaseCommand = new MySqlCommand($"DROP DATABASE @databaseName;", connection)
+            {
+                CommandType = CommandType.Text
+            };
+            dropDatabaseCommand.Parameters.AddWithValue("@databaseName", databaseName);
+            using (var command = dropDatabaseCommand)
+            {
+                if (timeout >= 0)
+                {
+                    command.CommandTimeout = timeout;
+                }
+
+                command.ExecuteNonQuery();
+            }
+            logger.LogInformation("Dropped database {0}", databaseName);
         }
     }
 
