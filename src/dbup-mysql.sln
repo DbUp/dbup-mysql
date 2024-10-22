@@ -15,6 +15,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{62E5FE92-E288-4E09-964D-F92AF0E49131}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\main.yml = ..\.github\workflows\main.yml
+		..\.github\workflows\publish-release.yml = ..\.github\workflows\publish-release.yml
+		..\.github\workflows\test-report.yml = ..\.github\workflows\test-report.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5DA19CA9-8039-46D6-B474-021943582785}"
@@ -23,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{77157734-01D
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		dbup-mysql.sln.DotSettings = dbup-mysql.sln.DotSettings
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Global
