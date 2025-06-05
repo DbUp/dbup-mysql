@@ -88,6 +88,19 @@ public static class MySqlExtensions
     }
 
     /// <summary>
+    /// Tracks the list of executed scripts in a MySql table.
+    /// </summary>
+    /// <param name="builder">The builder.</param>
+    /// <param name="schema">The schema.</param>
+    /// <param name="table">The table.</param>
+    /// <returns></returns>
+    public static UpgradeEngineBuilder JournalToMySqlTable(this UpgradeEngineBuilder builder, string schema, string table)
+    {
+        builder.Configure(c => c.Journal = new MySqlTableJournal(() => c.ConnectionManager, () => c.Log, schema, table));
+        return builder;
+    }
+
+    /// <summary>
     /// Ensures that the database specified in the connection string exists.
     /// </summary>
     /// <param name="supported">Fluent helper type.</param>
