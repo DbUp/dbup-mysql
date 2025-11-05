@@ -1,4 +1,4 @@
-﻿using DbUp.Support;
+using DbUp.Support;
 
 namespace DbUp.MySql
 {
@@ -7,6 +7,9 @@ namespace DbUp.MySql
     /// </summary>
     public class MySqlObjectParser : SqlObjectParser
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MySqlObjectParser"/> class.
+        /// </summary>
         public MySqlObjectParser() : base("`", "`")
         {
         }
