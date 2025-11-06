@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using DbUp.Engine.Transactions;
 using MySqlConnector;
 
@@ -18,11 +18,7 @@ namespace DbUp.MySql
         {
         }
 
-        /// <summary>
-        /// Splits the statements in the script using the ";" character or
-        /// DELIMITER if specified.
-        /// </summary>
-        /// <param name="scriptContents">The contents of the script to split.</param>
+        /// <inheritdoc/>
         public override IEnumerable<string> SplitScriptIntoCommands(string scriptContents)
         {
             var commandSplitter = new MySqlCommandSplitter();

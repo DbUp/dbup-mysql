@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DbUp.Engine;
 using DbUp.Engine.Output;
 using DbUp.Engine.Transactions;
@@ -24,16 +24,19 @@ namespace DbUp.MySql
         {
         }
 
+        /// <inheritdoc/>
         protected override string GetInsertJournalEntrySql(string @scriptName, string @applied)
         {
             return $"insert into {FqSchemaTableName} (ScriptName, Applied) values ({@scriptName}, {@applied})";
         }
 
+        /// <inheritdoc/>
         protected override string GetJournalEntriesSql()
         {
             return $"select scriptname from {FqSchemaTableName} order by scriptname";
         }
 
+        /// <inheritdoc/>
         protected override string CreateSchemaTableSql(string quotedPrimaryKeyName)
         {
             return
