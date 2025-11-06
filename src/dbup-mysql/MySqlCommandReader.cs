@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using DbUp.Support;
 
@@ -21,6 +21,7 @@ namespace DbUp.MySql
         /// <summary>
         /// Hook to support custom statements
         /// </summary>
+        /// <inheritdoc/>
         protected override bool IsCustomStatement => TryPeek(DelimiterKeyword.Length - 1, out var statement) &&
                        string.Equals(DelimiterKeyword, CurrentChar + statement, StringComparison.OrdinalIgnoreCase) &&
                        string.IsNullOrEmpty(GetCurrentCommandTextFromBuffer());
@@ -28,6 +29,7 @@ namespace DbUp.MySql
         /// <summary>
         /// Read a custom statement
         /// </summary>
+        /// <inheritdoc/>
         protected override void ReadCustomStatement()
         {
             // Move past Delimiter keyword

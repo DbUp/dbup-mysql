@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DbUp.Engine;
 using DbUp.Engine.Output;
@@ -28,11 +28,13 @@ namespace DbUp.MySql
         {
         }
 
+        /// <inheritdoc/>
         protected override string GetVerifySchemaSql(string schema)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc/>
         protected override void ExecuteCommandsWithinExceptionHandler(int index, SqlScript script, Action executeCommand)
         {
             try
