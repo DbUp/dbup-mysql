@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="dbup-core" Version="6.0.15" />
-    <PackageReference Include="MySqlConnector" Version="2.3.5"/>
+    <PackageReference Include="MySqlConnector" Version="2.6.1"/>
   </ItemGroup>
 
   <ItemGroup>
